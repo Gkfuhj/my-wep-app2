@@ -100,6 +100,29 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     };
     const isSupabaseEnabled = !!supabase;
 
+    useEffect(() => {
+        if (!isSupabaseEnabled) return;
+        (async () => {
+            const { data } = await supabase!.auth.getSession();
+            const u = data.session?.user;
+            if (u && !currentUser) {
+                setCurrentUser({ id: u.id, username: u.email || u.id, displayName: u.email || u.id, permissions: generateFullPermissions() });
+                await loadDataFromSupabase();
+                startRealtime();
+            }
+        })();
+        const { data: sub } = supabase!.auth.onAuthStateChange((_event, session) => {
+            const u = session?.user;
+            if (u) {
+                setCurrentUser({ id: u.id, username: u.email || u.id, displayName: u.email || u.id, permissions: generateFullPermissions() });
+                startRealtime();
+            } else {
+                setCurrentUser(null);
+            }
+        });
+        return () => { sub.subscription.unsubscribe(); };
+    }, []);
+
     /* 
        AWS Sync Placeholder:
        useEffect(() => {

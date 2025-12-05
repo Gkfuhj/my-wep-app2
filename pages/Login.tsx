@@ -17,7 +17,7 @@ const Login: React.FC = () => {
         setError('');
         const ok = await login(username, password);
         if (ok) {
-            navigate('/');
+            navigate('/dashboard');
         } else {
             setError('اسم المستخدم أو كلمة المرور غير صحيحة.');
         }
