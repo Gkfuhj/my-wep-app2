@@ -17,7 +17,13 @@ const Login: React.FC = () => {
         setError('');
         const ok = await login(username, password);
         if (ok) {
-            navigate('/dashboard');
+            setTimeout(() => {
+                try {
+                    navigate('/dashboard', { replace: true });
+                } catch (_) {
+                    window.location.hash = '#/dashboard';
+                }
+            }, 50);
         } else {
             setError('اسم المستخدم أو كلمة المرور غير صحيحة.');
         }
