@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1E40AF" />
+    <meta name="description" content="نظام شركة الخزينة للبرمجة الحديثة - يعمل دون اتصال" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- CSP updated to allow unsafe-eval for Tailwind CDN and external scripts -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:;">
+    <title>شركة الخزينة للبرمجة الحديثه</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7/css/flag-icons.min.css" rel="stylesheet" />
+    <script>
+        // AWS Amplify Polyfill for Vite
+        if (typeof global === 'undefined') {
+            window.global = window;
+        }
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                      'gold': {
+                        'DEFAULT': '#D4AF37',
+                        'light': '#F0D78D',
+                        'dark': '#B8860B',
+                      },
+                      'dark-bg': '#101010',
+                      'dark-card': '#1C1C1C',
+                      'dark-border': '#2E2E2E',
+                      'primary': {
+                        DEFAULT: '#1E40AF',
+                        light: '#3B82F6',
+                        dark: '#1D4ED8'
+                      }
+                    }
+                }
+            }
+        }
+    </script>
+     <style type="text/tailwindcss">
+        body {
+            @apply font-sans bg-gray-100 text-gray-800;
+        }
+        .dark body {
+             @apply bg-dark-bg text-gray-200;
+        }
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            @apply bg-gray-200;
+        }
+        .dark ::-webkit-scrollbar-track {
+            @apply bg-dark-bg;
+        }
+        ::-webkit-scrollbar-thumb {
+            @apply bg-primary/70 rounded-lg;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            @apply bg-gold/70 rounded-lg;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            @apply bg-primary;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            @apply bg-gold;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes slide-down-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-slide-down-fade-in {
+            animation: slide-down-fade-in 0.3s ease-out forwards;
+        }
+        :root {
+            --rs-bg: white;
+            --rs-text: #1f2937;
+            --rs-border: #d1d5db;
+            --rs-primary: #1E40AF;
+            --rs-control-bg: #f9fafb;
+            --rs-menu-bg: white;
+            --rs-option-hover-bg: #f3f4f6;
+            --rs-option-selected-bg: #e0e7ff;
+        }
+        .dark {
+            --rs-bg: #1C1C1C;
+            --rs-text: #e5e7eb;
+            --rs-border: #2E2E2E;
+            --rs-primary: #D4AF37;
+            --rs-control-bg: #101010;
+            --rs-menu-bg: #1C1C1C;
+            --rs-option-hover-bg: #2E2E2E;
+            --rs-option-selected-bg: #3a321d;
+        }
+        .fi {
+            margin-inline-end: 0.5rem;
+        }
+        .fis {
+            line-height: 1;
+            border-radius: 0.125rem;
+        }
+        .toggle-checkbox:checked {
+            @apply start-auto end-0;
+            border-color: var(--rs-primary);
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: var(--rs-primary);
+        }
+    </style>
+    <style>
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        input, textarea, select, [contenteditable="true"], .rs__input-container, .rs__single-value {
+            -webkit-user-select: auto;
+            -moz-user-select: auto;
+            -ms-user-select: auto;
+            user-select: auto;
+        }
+        .rs__control {
+            background-color: var(--rs-control-bg) !important;
+            border-color: var(--rs-border) !important;
+        }
+        .rs__control--is-focused {
+            border-color: var(--rs-primary) !important;
+            box-shadow: 0 0 0 1px var(--rs-primary) !important;
+        }
+        .rs__input-container, .rs__single-value, .rs__placeholder {
+            color: var(--rs-text) !important;
+        }
+        .rs__menu {
+            background-color: var(--rs-menu-bg) !important;
+        }
+        .rs__option {
+            background-color: transparent !important;
+            color: var(--rs-text) !important;
+        }
+        .rs__option--is-focused {
+            background-color: var(--rs-option-hover-bg) !important;
+        }
+        .rs__option--is-selected {
+            background-color: var(--rs-option-selected-bg) !important;
+            color: var(--rs-primary) !important;
+            font-weight: bold;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
+    "jspdf": "https://aistudiocdn.com/jspdf@^3.0.4",
+    "jspdf-autotable": "https://aistudiocdn.com/jspdf-autotable@^5.0.2",
+    "react-router": "https://aistudiocdn.com/react-router@^7.9.6",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "clsx": "https://aistudiocdn.com/clsx@^2.1.1",
+    "react-select": "https://aistudiocdn.com/react-select@^5.10.2",
+    "react-select/": "https://aistudiocdn.com/react-select@^5.10.2/",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "vite-plugin-pwa": "https://aistudiocdn.com/vite-plugin-pwa@^1.1.0",
+    "arabic-reshaper": "https://aistudiocdn.com/arabic-reshaper@^1.1.0",
+    "pdfmake/": "https://aistudiocdn.com/pdfmake@^0.2.20/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
